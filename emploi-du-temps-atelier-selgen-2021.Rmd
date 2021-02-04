@@ -1,6 +1,6 @@
 ---
 title: "Atelier de prédiction et sélection génomique"
-author: "J. David et équipe pédagogique : Vincent Ségura, Friedrich Longin, Margaux Jullien, Charlotte Brault, Michel Colombo"
+author: "J. David et équipe pédagogique : Vincent Segura, Friedrich Longin, Margaux Jullien, Charlotte Brault, Michel Colombo"
 date: '`r as.character(format(Sys.Date(), format="%d/%m/%Y"))`'
 colorlinks: true
 output:
@@ -29,7 +29,7 @@ En raison des conditions sanitaires, l'atelier se déroulera en distanciel à l'
 
 * Contact
 [Jacques David](mailto:jacques.david@supagro.fr) ([Montpellier SupAgro](http://www.supagro.fr/), [UMR AGAP](http://umr-agap.cirad.fr/), équipe [GE2POP](http://umr-agap.cirad.fr/equipes-scientifiques/genomique-evolutive-et-gestion-des-populations/contexte)),   
-Equipe pédagogique 2021 :Vincent Ségura ([Montpellier SupAgro](http://www.supagro.fr/), [UMR AGAP](http://umr-agap.cirad.fr/), équipe [DAAV](https://umr-agap.cirad.fr/recherche/equipes-scientifiques2/diversite-et-amelioration-de-la-vigne/contexte-et-objectifs)
+Equipe pédagogique 2021 :Vincent Segura ([Montpellier SupAgro](http://www.supagro.fr/), [UMR AGAP](http://umr-agap.cirad.fr/), équipe [DAAV](https://umr-agap.cirad.fr/recherche/equipes-scientifiques2/diversite-et-amelioration-de-la-vigne/contexte-et-objectifs)
 Julie Fiévet ([INRA](http://www.inra.fr/), UMR [GQE](http://moulon.inra.fr/))
 Friedrich Longin de l'[université d'Hohenheim](https://lsa-weizen.uni-hohenheim.de/)
 Charlotte Brault de l'[IFV](http://www.vignevin.com/) (en thèse à l'INRA, UMR AGAP, équipe [DAAV](https://umr-agap.cirad.fr/equipes-scientifiques/diversite-adaptation-et-amelioration-de-la-vigne/contexte-et-objectifs))
@@ -110,7 +110,7 @@ Les étudiants doivent venir chacun avec leur ordinateur portable avec la config
 
 # Ressources en ligne
 
-Ce document, ainsi que les autres nécessaires à la réalisation de l'atelier, se trouve à l'adresse suivante: https://github.com/timflutre/atelier-prediction-genomique.
+Ce document, ainsi que les autres nécessaires à la réalisation de l'atelier, se trouve à l'adresse suivante: https://github.com/jacquesdavid/SELGEN2021.
 Le copyright appartient à Montpellier SupAgro et à l'Institut National de la Recherche Agronomique.
 Le contenu du répertoire est sous license [Creative Commons Attribution-ShareAlike 4.0 International](http://creativecommons.org/licenses/by-sa/4.0/).
 Veuillez en prendre connaissance et vous y conformer (contactez les auteurs en cas de doute).
@@ -120,9 +120,9 @@ Veuillez en prendre connaissance et vous y conformer (contactez les auteurs en c
 
 ## Lundi
 
-* 9h - 12h: introduction à la modélisation statistique via la simulation en prenant la régression linéaire simple comme exemple, par T. Flutre (document "premiers-pas.pdf")
+* 9h - 12h: introduction à la modélisation statistique via la simulation en prenant la régression linéaire simple comme exemple, par V. Segura (document "premiers-pas.pdf")
 
-* 14h - 17h: extension au modèle linéaire mixte, puis exploration par simulation de la prédiction génomique, par T. Flutre (document "prediction-genomique.pdf")
+* 14h - 17h: extension au modèle linéaire mixte, puis exploration par simulation de la prédiction génomique, par V. Segura (document "prediction-genomique.pdf")
 
 ## Mardi
 * 9h - 12h: investigation par simulation, en groupes, des aspects influençant la précision de prédiction
