@@ -23,7 +23,8 @@ abstract: |
 
 * Du lundi 15 au vendredi 19 février 2021.
 
-En raison des conditions sanitaires, l'atelier se déroulera en distanciel à l'adresse suivante.
+En raison des conditions sanitaires, l'atelier se déroulera en distanciel à l'adresse suivante. [Salle ZOOM](https://zoom.us/j/7954319618)
+
 
 * Habituellement ca se passe là :  Montpellier SupAgro, campus La Gaillarde, bâtiment 14 de l'annexe de Mandon ([plan](https://www.montpellier-supagro.fr/plan-acces)).
 
