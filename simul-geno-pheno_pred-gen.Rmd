@@ -5,14 +5,14 @@ date: '`r as.character(format(Sys.Date(), format="%d/%m/%Y"))`'
 colorlinks: true
 linkcolor: blue
 output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: TRUE
   html_document:
     toc: true
     toc_depth: 3
     toc_float: true
-    number_sections: TRUE
-  pdf_document:
-    toc: true
-    toc_depth: 3
     number_sections: TRUE
 mode: selfcontained
 abstract: |
@@ -251,6 +251,43 @@ if(is.infinitesimal){
 # variance et moyenne comparables
 beta <- scale(beta, center=TRUE, scale=TRUE)
 ```
+On obtient un vecteur $\beta$ des vrais effets des marqueurs.
+
+
+### Valeurs génotypiques additives et variance génétique additive
+
+Ici on a gardé la matrice des génotypes aux marqueurs issue de la simulation **sans structure**.
+Notez que $X$ est initialement codé en $\{0,1,2\}$, mais que dans la suite on peut le centrer à l'aide des fréquences alléliques comme dans l'estimateur de VanRaden:
+
+```{r compute genotypic value}
+N <- nb.genos # nombre d'individus
+afs <- colMeans(X) / 2
+tmp <- matrix(rep(1, N)) %*% (2 * afs)
+X.center <- X - tmp
+# Effet génétique additif
+a <- X.center %*% beta
+# Variance génétique additive
+(sigma.a2 <- 1  * 2 * sum(afs * (1 - afs)))
+```
+
+### Erreurs
+
+```{r h2}
+h2 <- 0.7 # héritabilité au sens strict
+(sigma2 <- ((1 - h2) / h2) * sigma.a2) # variance d'erreur calculée à partir de h^2 et de sigma.a2
+epsilon <- rnorm(n=N, mean=0, sd=sqrt(sigma2)) # vecteur d'erreurs 
+```
+
+### Phénotypes
+
+```{r phenotypes}
+mu <- 36 # chosen arbitrarily
+y <- mu + X.center %*% beta + epsilon
+summary(y)
+hist(y, breaks="FD", main="Phenotypes", col="grey", border="white")
+```
+
+
 
 # Description des données simulées
 
@@ -278,9 +315,6 @@ hist(A.mark.habier[upper.tri(A.mark.habier)])
 Estimateur de VanRaden (2008):
 
 ```{r vanraden gen rel}
-N <- nb.genos # nombre d'individus
-tmp <- matrix(rep(1, N)) %*% (2 * afs)
-X.center <- X - tmp
 A.mark.vanraden <- (X.center %*% t(X.center)) / (2 * sum(afs * (1 - afs)))
 hist(diag(A.mark.vanraden), breaks="FD")
 hist(A.mark.vanraden[upper.tri(A.mark.vanraden)])
@@ -301,40 +335,11 @@ for(chr in unique(snp.coords$chr)){
 }
 ```
 
-## Valeurs génotypiques additives et variance génétique additive
-
-Notez que $X$ est initialement codé en $\{0,1,2\}$, mais que dans la suite on peut le centrer à l'aide des fréquences alléliques comme dans l'estimateur de VanRaden:
-
-```{r compute genitypic value}
-X <- X.center
-# Effet génétique additif
-a <- X %*% beta
-# Variance génétique additive
-(sigma.a2 <- 1  * 2 * sum(afs * (1 - afs)))
-```
-
-## Erreurs
-
-```{r h2}
-h2 <- 0.7 # héritabilité au sens strict
-(sigma2 <- ((1 - h2) / h2) * sigma.a2) # variance d'erreur calculée à partir de h^2 et de sigma.a2
-epsilon <- rnorm(n=N, mean=0, sd=sqrt(sigma2)) # vecteur d'erreurs 
-```
-
-## Phénotypes
-
-```{r phenotypes}
-mu <- 36 # chosen arbitrarily
-y <- mu + X %*% beta + epsilon
-summary(y)
-hist(y, breaks="FD", main="Phenotypes", col="grey", border="white")
-```
-
 # Distinction des sous-population
 
 Une des problématiques en prédiction génomique est la distance génétique entre la population d'entraînement, qui a servi à ajuster le modèle (c'est-à-dire à estimer les effets associés aux marqueurs $\hat \beta$).
 Si la population est structurée, alors il y a de la distance génétique entre les différentes sous-populations.
-Nous allons voir comment évolue la précision de prédiction lorsque la population de validation fait partie d'une sous-population différente de la population d'entraînement.
+Vous pourrez voir comment évolue la précision de prédiction lorsque la population de validation fait partie d'une sous-population différente de la population d'entraînement.
 
 ```{r distinct_pop}
 sub_pop <- find.clusters(x=X.struct, n.pca=100, scale=TRUE, method="kmeans",
