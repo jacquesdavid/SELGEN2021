@@ -5,14 +5,14 @@ date: '`r as.character(format(Sys.Date(), format="%d/%m/%Y"))`'
 colorlinks: true
 linkcolor: blue
 output:
-  pdf_document:
-    toc: true
-    toc_depth: 3
-    number_sections: TRUE
   html_document:
     toc: true
     toc_depth: 3
     toc_float: true
+    number_sections: TRUE
+  pdf_document:
+    toc: true
+    toc_depth: 3
     number_sections: TRUE
 mode: selfcontained
 abstract: |
@@ -71,7 +71,7 @@ suppressPackageStartupMessages(library(scrm))
 # 
 # BiocManager::install("GenomicRanges")
 suppressPackageStartupMessages(library(GenomicRanges))
-suppressPackageStartupMessages(library(rutilstimflutre))
+#suppressPackageStartupMessages(library(rutilstimflutre))
 suppressPackageStartupMessages(library(adegenet))
 ```
 
@@ -80,6 +80,19 @@ Il est également utile de savoir combien de temps est nécessaire pour exécute
 ```{r time_0}
 t0 <- proc.time()
 ```
+
+# Chargement des fonctions
+
+Sourcer le fichier `rutils_like.R`.
+Option 1 : aller dans l'onglet rutils_like.R dans Rstudio et cliquer sur le bouton "Source"
+Option 2 : appliquer la fonction "source" en mettant le chemin d'accès vers ce script R (chez moi c'est "~/work/debug/rutils_like.R").
+
+Vérifier que les fonctions sont bien chargées dans l'environnement.
+
+```{r}
+source("~/work/debug/rutils_like.R")
+```
+
 
 # Modèle
 
@@ -124,7 +137,6 @@ Ne <- 10^4 # taille efficace
 chrom.len <- 5*10^5 # longueur de chaque chromosome
 mu <- 10^(-8) # taux de mutation
 c.rec <- 10^(-8) # taux de recombinaison
-?simulCoalescent # pour avoir l'aide de la fonction
 ```
 
 #### Coalescent séquentiel avec recombinaison **sans** structure
@@ -135,7 +147,7 @@ genomes <- simulCoalescent(nb.inds=nb.genos, nb.reps=nb.chroms,
                            pop.recomb.rate=4 * Ne * c.rec * chrom.len,
                            chrom.len=chrom.len,
                            #mig.rate=5, # => valeur par défaut sans structure
-                           nb.pops=1, 
+                           nb.pops=1,
                            verbose=1)
 dim(genomes$genos)
 genomes$genos[1:8,1:8]
@@ -146,10 +158,9 @@ genomes$genos[1:8,1:8]
 La structure est ici simulée avec des taux de migration : plus le taux de migration est faible, plus les populations seront différenciées entre elles.
 
 ```{r simul_pop_struct}
-mig.rates <- 0.1 # faible migration => forte structure
-# autres valeurs possibles à tester pour mig.rates : 0.4 / 0.7 / 1.2
+mig.rates <- 0.5 # faible migration => forte structure
 nb.pops <- 10 # nombre de populations (+/- différenciées)
-chrom.len <- 10^4
+chrom.len <- 5*10^4
 nb.genos2 <- 300
 
 genomes.struct <- simulCoalescent(nb.inds=nb.genos2,
