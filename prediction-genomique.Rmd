@@ -413,6 +413,8 @@ Ce que l'on retrouve dans les données simulées:
 Notez qu'on aurait aussi pu directement simuler les valeurs génotypiques additives via $\boldsymbol{a} \sim \mathcal{N}_N(\boldsymbol{0}, \sigma_a^2 A_{\text{mark}})$.
 En R, en utilisant la fonction \verb+mvrnorm+ du paquet [MASS](https://cran.r-project.org/web/packages/MASS/), cela aurait donné:
 ```{r simul_a, eval=FALSE}
+# Attention à ne pas le lancer à la main pendant la séance de TP sinon vous aurez une décorrélation entre les y et les beta
+# c'est arrivé en 2021
 if(requireNamespace("MASS", quietly=TRUE)){
   a <- MASS::mvrnorm(n=1, mu=rep(0, N), Sigma=sigma.a2 * A.mark)
   g <- a
