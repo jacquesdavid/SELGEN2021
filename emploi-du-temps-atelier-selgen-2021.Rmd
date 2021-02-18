@@ -151,7 +151,7 @@ Veuillez en prendre connaissance et vous y conformer (contactez les auteurs en c
 
 * 9h - 12h: cours "Optimization of breeding schemes with GS in R", par F. Longin (document "Selgain_Montpellier_2018.pdf")
 
-* 14h - 16h30: travaux pratiques via des simulations de schémas de sélection (document "Selgain_Montpellier_2018_example.R").
+* 13h30 - 16h00: travaux pratiques via des simulations de schémas de sélection (document "Selgain_Montpellier_2018_example.R").
 
 
-* 16h30 - 17h: discussion sur les acquis réalisés durant l'atelier et les améliorations à apporter
+* 16h00 - 16h30: discussion sur les acquis réalisés durant l'atelier et les améliorations à apporter
